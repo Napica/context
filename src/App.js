@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import UserContext from "./context/userContext";
+import Login from "./components/Login/Login";
+import Welcome from "./components/Welcome/Welcome";
 
 function App() {
+  const [token, setToken] = useState("");
+  const [fullName, setFullName] = useState("");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserContext.Provider
+      value={{ token, fullName, setToken, setFullName }}
+    >
+      <div className="App">
+        <h1>Hello world</h1>
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-12">
+              <Login />
+            </div>
+          </div>
+        </div>
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-12">
+              <Welcome />
+            </div>
+          </div>
+        </div>
+      </div>
+    </UserContext.Provider>
   );
 }
 
